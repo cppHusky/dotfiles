@@ -1,0 +1,86 @@
+{
+    "layer": "top", // Waybar at top layer
+    "height": 28, // Waybar height (to be removed for auto height)
+    "margin-top": 2,
+    "margin-left": 4,
+    "margin-right": 4,
+    "spacing": 0, // Gaps between modules (4px)
+	"modules-left": ["niri/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray","cpu","memory","battery","pulseaudio"],
+    // Modules configuration
+    "niri/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "focused": "",
+            "default": ""
+        },
+		"disable-click": true,
+        "disable-markup": true
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a, %b %d, %Y  %H:%M:%S}",
+		"interval":1,
+		"calendar":{
+			"mode":"year",
+			"mode-mon-col":3,
+			"weeks-pos":"left",
+			"format":{
+				"months":"<span color='#ffead3'><b>{}</b></span>",
+				"days":"<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks":"<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays":"<span color='#ffcc66'><b>{}</b></span>",
+				"today":"<span color='#ff6699'><b>{}</b></span>"
+			}
+		},
+		"actions":{
+			"on-click":"shift_up",
+			"on-click-right":"shift_down"
+		}
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "battery": {
+		"interval":5,
+        "states":{
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{time} {icon}",
+        "format-charging": "{time} 󰂄",
+        "format-plugged": "",
+        "format-alt": "{capacity}% {icon}",
+        "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    },
+	"cpu": {
+        "format": "{usage}% ",
+        "tooltip": true
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "󰝟 {icon}",
+        "format-muted": "󰝟",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}

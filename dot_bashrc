@@ -1,0 +1,115 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Set GPG TTY
+export GPG_TTY=$(tty)
+
+# Add some local bin to path
+export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.cargo/bin"
+
+# alias for better user experience
+alias ls='ls --color=auto'
+alias rm='rm -I'
+alias mv='mv -i'
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+function hstrnotiocsti {
+    { READLINE_LINE="$( { </dev/tty hstr -- ${READLINE_LINE}; } 2>&1 1>&3 3>&- )"; } 3>&1;
+    READLINE_POINT=${#READLINE_LINE}
+}
+
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind -x '"\C-r": "hstrnotiocsti"'; fi
+export HSTR_TIOCSTI=n
+
+# Use Ctrl+W to erase word split by /
+stty werase undef
+bind '\C-w:unix-filename-rubout'
+
+# Use fzf bash integration
+eval "$(fzf --bash)"
+
+# Use F12 to paste from clipboard
+_paste_clipboard(){
+    local clipboard_content=$(wl-paste)
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${clipboard_content}${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$((READLINE_POINT+${#clipboard_content}))
+}
+bind -x '"\e[24~":"_paste_clipboard"'
+
+# Bash greeting
+_my_bash_greeting(){
+    local hostname="\e[34;1m[$(hostnamectl hostname)]\e[0m"
+    local uptime="\e[1m$(uptime -p)\e[0m"
+    echo -e "${hostname} ${uptime}"
+}
+_my_bash_greeting
+
+# Custom bash prompt
+_my_prompt_command(){
+    local last_status_code=$?
+    PROMPT_DIRTRIM=3
+    local host="\e[32m\u\e[0m@\H\e[0m"
+    local dir="\e[34m\w\e[0m"
+    if [[ -n ${VIRTUAL_ENV} ]]; then
+        local virtual_env_engaged="\e[36m(.venv)\e[0m "
+    else
+        local virtual_env_engaged=""
+    fi
+    local cmd_time="\e[35m$(date '+ %r')\e[0m"
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        local git_branch="$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
+        if [[ -n $(git status --porcelain | colrm 3 | colrm 1 1 | rg 'M|\?|D' 2> /dev/null) ]]; then
+            local git_dirty="\e[31m*\e[0m"
+        else
+            local git_dirty=""
+        fi
+        if ! git diff --cached --quiet 2>/dev/null; then
+            local git_cached="\e[32m+\e[0m"
+        else
+            local git_cached=""
+        fi
+        if [[ -n "$(git stash list)" ]]; then
+            local git_stashed="\e[35m?\e[0m"
+        else
+            local git_stashed=""
+        fi
+        if [[ -n $(git rev-parse --abbrev-ref @{upstream} 2>/dev/null) ]]; then
+            local ahead=$(git rev-list --count @{upstream}..HEAD 2>/dev/null)
+            local behind=$(git rev-list --count HEAD..@{upstream} 2>/dev/null)
+            if [[ $ahead -ne 0 ]]; then
+                ahead=" \e[34m↑${ahead}\e[0m"
+            else
+                ahead=""
+            fi
+            if [[ $behind -ne 0 ]]; then
+                behind=" \e[34m↓${behind}\e[0m"
+            else
+                behind=""
+            fi
+        fi
+        local git_info=" (${git_branch}${git_dirty}${git_cached}${git_stashed}${ahead}${behind})"
+    else
+        local git_info=""
+    fi
+    if [[ $last_status_code -ne 0 ]]; then
+        local last_status=" \e[31m[${last_status_code}]\e[0m"
+    else
+        local last_status=""
+    fi
+    PS1="\e[0m${virtual_env_engaged}${host}:${dir}${cmd_time}${git_info}${last_status}\e[0m\n\$ "
+}
+PROMPT_COMMAND=_my_prompt_command

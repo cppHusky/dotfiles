@@ -1,0 +1,79 @@
+set nocompatible
+set showcmd
+set nu rnu
+set shiftwidth=4 tabstop=4 softtabstop=4
+set autoindent
+set shortmess-=S
+autocmd TerminalOpen * setlocal nonu nornu
+filetype on
+filetype plugin on
+filetype indent on
+autocmd Filetype rust setlocal foldmethod=syntax
+autocmd Filetype html,xml setlocal sw=2 ts=2 foldmethod=syntax
+autocmd Filetype mediawiki setlocal nolinebreak
+autocmd Filetype typst setlocal noet sw=2 ts=2 sts=2
+autocmd Filetype rust setlocal noet sw=4 ts=4 sts=4
+autocmd Filetype python,sage setlocal noet
+autocmd Filetype markdown setlocal et
+autocmd Filetype yaml setlocal et
+autocmd Filetype javascript,typescript,typescriptreact,vue setlocal sw=2 ts=2 sts=2
+autocmd BufNewFile,BufRead *.wl set syntax=wl
+autocmd BufNewFile,BufRead *.wls set syntax=wl
+syntax on
+color zellner
+set cursorline
+highlight CursorLine guibg=Grey90
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set list
+set incsearch showmode showmatch hlsearch
+set wildmenu
+call plug#begin()
+Plug '907th/vim-auto-save'
+Plug 'ciaranm/detectindent'
+Plug 'DanBradbury/copilot-chat.vim',{'tag':'v2.1.0'}
+Plug 'findango/vim-mdx'
+Plug 'github/copilot.vim'
+Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'kaarmu/typst.vim'
+Plug 'petRUShka/vim-sage'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'wakatime/vim-wakatime'
+call plug#end()
+filetype plugin indent on
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\	exe "normal! g`\"" |
+	\ endif
+autocmd BufReadPost,BufNewFile * DetectIndent
+nnoremap <C-c><C-c> :CopilotChatOpen<CR><C-w>T<CR>
+nnoremap <C-c><C-e> :Copilot enable<CR>
+nnoremap <C-c><C-d> :Copilot disable<CR>
+nnoremap <C-l><C-e> :call lsp#enable()<CR>
+nnoremap <C-l><C-h> :LspHover<CR>
+nnoremap <C-l><C-d> :call lsp#disable()<CR>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+noremap <PageUp> <Nop>
+noremap <PageDown> <Nop>
+noremap <S-Up> <Nop>
+noremap <S-Down> <Nop>
+inoremap <S-Up> <Nop>
+inoremap <S-Down> <Nop>
+let g:sql_type_default='pgsql'
+let g:copilot_enabled=0
+let g:lsp_auto_enable=0
+let g:silent_auto_save=1
+let g:auto_save_events=["TextChanged","TextChangedI"]
+let g:updatetime=5000
+if executable('typescript-language-server')
+	au User lsp_setup call lsp#register_server({
+		\'name': 'typescript-language-server',
+		\'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+		\'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+		\'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
+		\})
+endif
