@@ -30,7 +30,6 @@ set wildmenu
 call plug#begin()
 Plug '907th/vim-auto-save'
 Plug 'ciaranm/detectindent'
-Plug 'DanBradbury/copilot-chat.vim',{'tag':'v2.1.0'}
 Plug 'findango/vim-mdx'
 Plug 'github/copilot.vim'
 Plug 'jasonccox/vim-wayland-clipboard'
