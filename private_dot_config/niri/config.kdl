@@ -363,7 +363,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Ctrl+Alt+T { spawn "alacritty"; }
-    Super+Space { spawn "fuzzel"; }
+    Super+Space { spawn "sirula"; }
     Ctrl+Alt+F { spawn "zen"; }
     Ctrl+Alt+M { spawn "wolframnb"; }
     Super+Escape { spawn "swaylock"; }
