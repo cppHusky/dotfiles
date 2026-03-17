@@ -367,6 +367,7 @@ binds {
     Ctrl+Alt+F { spawn "zen"; }
     Ctrl+Alt+M { spawn "wolframnb"; }
     Super+Escape { spawn "swaylock"; }
+    Super+S { spawn-sh "~/.local/bin/slurp-ruler.sh"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
