@@ -3,13 +3,29 @@
 	"autoupdate":false,
 	"default_agent": "plan",
 	"permission":{
-		"bash":"ask",
-		"edit":"ask",
+		"bash":{
+			"*":"allow",
+			"git *":"ask",
+			"git diff":"allow",
+			"git log":"allow",
+			"git ls-files":"allow",
+			"git status":"allow"
+		},
+		"edit":{
+			".git/*":"deny",
+			"opencode.json":"deny"
+		},
 		"glob":"allow",
 		"grep":"allow",
 		"list":"allow",
 		"question":"allow",
-		"read":"allow",
+		"read":{
+			"*":"allow",
+			"*.dev.vars":"deny",
+			"*.env":"deny",
+			"*.env.*":"deny",
+			"*.secret":"deny"
+		},
 		"skill":"ask",
 		"webfetch":"allow",
 		"websearch":"allow"
