@@ -499,8 +499,8 @@ binds {
     // These binds are also affected by touchpad's natural-scroll, so these
     // example binds are "inverted", since we have natural-scroll enabled for
     // touchpads by default.
-    Super+TouchpadScrollDown { spawn-sh "/usr/local/bin/brightctl inc 1"; }
-    Super+TouchpadScrollUp { spawn-sh "/usr/local/bin/brightctl dec 1"; }
+    Super+TouchpadScrollDown allow-when-locked=true { spawn-sh "/usr/local/bin/brightctl inc 1"; }
+    Super+TouchpadScrollUp allow-when-locked=true { spawn-sh "/usr/local/bin/brightctl dec 1"; }
     Super+TouchpadScrollLeft { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ .5%-"; }
     Super+TouchpadScrollRight { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ .5%+"; }
 
