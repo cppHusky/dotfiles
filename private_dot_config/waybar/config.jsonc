@@ -21,7 +21,7 @@
 	},
 	"clock": {
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-		"format": "{:%a, %b %d, %Y	%H:%M:%S}",
+		"format": "{:%a, %b %d, %Y  %H:%M:%S}",
 		"interval":1,
 		"calendar":{
 			"mode":"year",
