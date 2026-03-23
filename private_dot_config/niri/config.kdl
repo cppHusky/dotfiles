@@ -371,6 +371,8 @@ binds {
     Ctrl+Alt+F { spawn "zen"; }
     Ctrl+Alt+M { spawn "wolframnb"; }
     Super+Escape { spawn "swaylock"; }
+    Super+Shift+Escape { spawn-sh "swaylock & niri msg action power-off-monitors"; }
+    Super+Ctrl+Escape allow-when-locked=true { spawn-sh "niri msg action power-off-monitors"; }
     Super+S { spawn-sh "~/.local/bin/slurp-ruler.sh"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
