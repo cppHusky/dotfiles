@@ -19,6 +19,7 @@ autocmd Filetype yaml setlocal et
 autocmd Filetype javascript,typescript,typescriptreact,vue,astro setlocal sw=2 ts=2 sts=2
 autocmd BufNewFile,BufRead *.wl set syntax=wl
 autocmd BufNewFile,BufRead *.wls set syntax=wl
+autocmd BufNewFile,BufRead *.mdx setfiletype markdown
 syntax on
 color zellner
 set cursorline
