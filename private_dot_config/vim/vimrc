@@ -14,7 +14,7 @@ autocmd Filetype mediawiki setlocal nolinebreak
 autocmd Filetype typst setlocal noet sw=2 ts=2 sts=2
 autocmd Filetype rust setlocal noet sw=4 ts=4 sts=4
 autocmd Filetype python,sage setlocal noet
-autocmd Filetype markdown setlocal et
+autocmd Filetype markdown setlocal et sw=4 ts=4 sts=4
 autocmd Filetype yaml setlocal et
 autocmd Filetype javascript,typescript,typescriptreact,vue,astro setlocal sw=2 ts=2 sts=2
 autocmd BufNewFile,BufRead *.wl set syntax=wl
