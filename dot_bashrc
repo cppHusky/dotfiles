@@ -15,6 +15,7 @@ export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.cargo/bin"
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias mv='mv -i'
+alias rfind='find -regextype posix-awk -regex'
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
