@@ -85,9 +85,9 @@ function _timer_stop {
     unset _timer_start
 }
 _set_prompt(){
-    _timer_stop
-    local timer_show="\e[35m (${_timer_show})\e[0m"
     local last_status_code=$?
+    _timer_stop
+    local timer_show="\e[35m ${_timer_show}\e[0m"
     PROMPT_DIRTRIM=3
     local host="\e[32m\u\e[0m@\H\e[0m"
     local dir="\e[34m\w\e[0m"
