@@ -60,7 +60,33 @@ _my_bash_greeting(){
 _my_bash_greeting
 
 # Custom bash prompt
-_my_prompt_command(){
+function _timer_now {
+    date +%s%N
+}
+function _timer_start {
+    _timer_start=${_timer_start:-$(_timer_now)}
+}
+function _timer_stop {
+    local delta_us=$((($(_timer_now) - $_timer_start) / 1000))
+    local us=$((delta_us % 1000))
+    local ms=$(((delta_us / 1000) % 1000))
+    local s=$(((delta_us / 1000000) % 60))
+    local m=$(((delta_us / 60000000) % 60))
+    local h=$((delta_us / 3600000000))
+    # Goal: always show around 3 digits of accuracy
+    if ((h > 0)); then _timer_show=${h}h${m}m
+    elif ((m > 0)); then _timer_show=${m}m${s}s
+    elif ((s >= 10)); then _timer_show=${s}.$((ms / 100))s
+    elif ((s > 0)); then _timer_show=${s}.$(printf %03d $ms)s
+    elif ((ms >= 100)); then _timer_show=${ms}ms
+    elif ((ms > 0)); then _timer_show=${ms}.$((us / 100))ms
+    else _timer_show=${us}us
+    fi
+    unset _timer_start
+}
+_set_prompt(){
+    _timer_stop
+    local timer_show="\e[35m (${_timer_show})\e[0m"
     local last_status_code=$?
     PROMPT_DIRTRIM=3
     local host="\e[32m\u\e[0m@\H\e[0m"
@@ -70,7 +96,6 @@ _my_prompt_command(){
     else
         local virtual_env_engaged=""
     fi
-    local cmd_time="\e[35m$(date '+ %r')\e[0m"
     if git rev-parse --git-dir > /dev/null 2>&1; then
         local git_branch="$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
         if [[ -n $(git status --porcelain | colrm 3 | colrm 1 1 | rg 'M|\?|D' 2> /dev/null) ]]; then
@@ -111,6 +136,7 @@ _my_prompt_command(){
     else
         local last_status=""
     fi
-    PS1="\e[0m${virtual_env_engaged}${host}:${dir}${cmd_time}${git_info}${last_status}\e[0m\n\$ "
+    PS1="\e[0m${virtual_env_engaged}${host}:${dir}${timer_show}${git_info}${last_status}\e[0m\n\$ "
 }
-PROMPT_COMMAND=_my_prompt_command
+trap '_timer_start' DEBUG
+PROMPT_COMMAND='_set_prompt'
