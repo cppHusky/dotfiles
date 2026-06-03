@@ -37,6 +37,7 @@ Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'kaarmu/typst.vim'
 Plug 'petRUShka/vim-sage'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'voldikss/vim-mma'
 Plug 'wakatime/vim-wakatime'
 call plug#end()
 filetype plugin indent on
