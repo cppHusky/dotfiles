@@ -6,10 +6,13 @@
 		"bash":{
 			"*":"allow",
 			"git *":"ask",
-			"git diff":"allow",
-			"git log":"allow",
-			"git ls-files":"allow",
-			"git status":"allow"
+			"git diff *":"allow",
+			"git log *":"allow",
+			"git show *":"allow",
+			"git ls-files *":"allow",
+			"git ls-remote *":"allow",
+			"git status *":"allow",
+			"git rev-parse *":"allow"
 		},
 		"edit":{
 			".git/*":"deny",
