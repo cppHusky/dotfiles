@@ -32,5 +32,8 @@
 		"skill":"ask",
 		"webfetch":"allow",
 		"websearch":"allow"
-	}
+	},
+	"plugin":[
+		"opencode-wakatime"
+	]
 }
