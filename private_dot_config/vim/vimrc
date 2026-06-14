@@ -32,7 +32,6 @@ call plug#begin()
 Plug '907th/vim-auto-save'
 Plug 'ciaranm/detectindent'
 Plug 'findango/vim-mdx'
-Plug 'github/copilot.vim'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'kaarmu/typst.vim'
 Plug 'petRUShka/vim-sage'
@@ -46,9 +45,6 @@ autocmd BufReadPost *
 	\	exe "normal! g`\"" |
 	\ endif
 autocmd BufReadPost,BufNewFile * DetectIndent
-nnoremap <C-c><C-c> :CopilotChatOpen<CR><C-w>T<CR>
-nnoremap <C-c><C-e> :Copilot enable<CR>
-nnoremap <C-c><C-d> :Copilot disable<CR>
 nnoremap <C-l><C-e> :call lsp#enable()<CR>
 nnoremap <C-l><C-h> :LspHover<CR>
 nnoremap <C-l><C-d> :call lsp#disable()<CR>
@@ -65,7 +61,6 @@ noremap <S-Down> <Nop>
 inoremap <S-Up> <Nop>
 inoremap <S-Down> <Nop>
 let g:sql_type_default='pgsql'
-let g:copilot_enabled=0
 let g:lsp_auto_enable=0
 let g:silent_auto_save=1
 let g:auto_save_events=["TextChanged","TextChangedI"]
