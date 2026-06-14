@@ -18,6 +18,10 @@
 			".git/*":"deny",
 			"opencode.json":"deny"
 		},
+		"external_directory":{
+			"*":"ask",
+			"/tmp/**":"allow"
+		},
 		"glob":"allow",
 		"grep":"allow",
 		"list":"allow",
