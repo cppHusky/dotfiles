@@ -63,7 +63,7 @@ inoremap <S-Up> <Nop>
 inoremap <S-Down> <Nop>
 let g:sql_type_default='pgsql'
 let g:lsp_auto_enable=0
-let g:silent_auto_save=1
+let g:auto_save_silent=1
 let g:auto_save_events=["TextChanged","TextChangedI"]
 let g:updatetime=5000
 if executable('typescript-language-server')
