@@ -4,6 +4,7 @@ set nu rnu
 set shiftwidth=4 tabstop=4 softtabstop=4
 set autoindent
 set shortmess-=S
+set backupcopy=yes
 autocmd TerminalOpen * setlocal nonu nornu
 filetype on
 filetype plugin on
