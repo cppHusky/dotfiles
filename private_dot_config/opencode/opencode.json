@@ -29,8 +29,8 @@
 		"read":{
 			"*":"allow",
 			"*.dev.vars":"deny",
-			"*.env":"deny",
-			"*.env.*":"deny",
+			"*.env*":"deny",
+			"*.env.example":"allow",
 			"*.secret":"deny"
 		},
 		"skill":"ask",
