@@ -7,7 +7,7 @@
 	"spacing": 0, // Gaps between modules (4px)
 	"modules-left": ["niri/workspaces"],
 	"modules-center": ["clock"],
-	"modules-right": ["tray","cpu","memory","battery","pulseaudio"],
+	"modules-right": ["tray","custom/cash","cpu","memory","battery","pulseaudio"],
 	// Modules configuration
 	"niri/workspaces": {
 		"all-outputs": true,
@@ -82,5 +82,14 @@
 			"default": ["", "", ""]
 		},
 		"on-click": "pavucontrol"
+	},
+	"custom/cash": {
+		"format":"{icon}",
+		"format-icons":"",
+		"tooltip":true,
+		"interval": 1,
+		"return-type": "json",
+		"exec":"~/.cargo/bin/cash-rate-logger --waybar -b CNY -o USD,JPY"
+		//"exec": "/tmp/a.sh"
 	}
 }
