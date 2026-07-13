@@ -9,7 +9,9 @@
 export GPG_TTY=$(tty)
 
 # Add some local bin to path
-export PATH="${PATH}:${HOME}/.local/bin:${HOME}/.cargo/bin"
+export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/.cargo/bin"
+export PATH="${PATH}:${HOME}/.local/share/pnpm/bin"
 
 # alias for better user experience
 alias ls='ls --color=auto'
