@@ -370,6 +370,7 @@ binds {
     Super+Space { spawn "sirula"; }
     Ctrl+Alt+F { spawn "zen"; }
     Ctrl+Alt+M { spawn "wolframnb"; }
+    Ctrl+Alt+L { spawn "localsend"; }
     Super+Escape { spawn "swaylock"; }
     Super+Ctrl+Escape allow-when-locked=true { spawn-sh "niri msg action power-off-monitors"; }
     Super+S { spawn-sh "~/.local/bin/slurp-ruler.sh"; }
