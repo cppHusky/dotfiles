@@ -100,7 +100,7 @@ _set_prompt(){
     fi
     if git rev-parse --git-dir > /dev/null 2>&1; then
         local git_branch="$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
-        if [[ -n $(git status --porcelain | colrm 3 | colrm 1 1 | rg 'M|\?|D' 2> /dev/null) ]]; then
+        if [[ -n $(git status --porcelain 2>/dev/null | colrm 3 | colrm 1 1 | rg 'M|\?|D') ]]; then
             local git_dirty="\e[31m*\e[0m"
         else
             local git_dirty=""
@@ -110,7 +110,7 @@ _set_prompt(){
         else
             local git_cached=""
         fi
-        if [[ -n "$(git stash list)" ]]; then
+        if [[ -n "$(git stash list 2>/dev/null)" ]]; then
             local git_stashed="\e[35m?\e[0m"
         else
             local git_stashed=""
