@@ -28,5 +28,8 @@
     "locale",
     "break",
     "colors"
-  ]
+  ],
+  "display":{
+    "disableLinewrap":true
+  }
 }
