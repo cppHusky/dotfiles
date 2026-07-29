@@ -1,0 +1,18 @@
+[init]
+	defaultBranch = master
+[user]
+	email = cpphusky@outlook.com
+	name = cppHusky
+[core]
+	quotePath = off
+[commit]
+	gpgsign = true
+[alias]
+    dlog=-c diff.external=difft log --ext-diff
+    dshow=-c diff.external=difft show --ext-diff
+    difft=-c diff.external=difft diff
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
