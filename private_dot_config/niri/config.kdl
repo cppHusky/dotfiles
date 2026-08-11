@@ -65,7 +65,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
+output "Lenovo Group Limited 0x8AB1 Unknown" {
     // Uncomment this line to disable this output.
     // off
 
@@ -75,12 +75,11 @@ output "eDP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    //mode "3072x1920@120.002"
     mode "3072x1920@60.000"
     variable-refresh-rate//on-demand=true
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    //scale 1.5
+    scale 1.75
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
