@@ -16,6 +16,7 @@ export PATH="${PATH}:${HOME}/.local/share/pnpm/bin"
 # alias for better user experience
 alias ls='ls --color=auto'
 alias rm='rm -I'
+alias cp='cp -i'
 alias mv='mv -i'
 alias rfind='find -regextype posix-awk -regex'
 
