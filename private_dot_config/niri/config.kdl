@@ -393,6 +393,7 @@ binds {
     Super+F4 { close-window; }
     Super+F11 allow-when-locked=true { spawn-sh "bluetoothctl disconnect $AIRPODS_MAC"; }
     Super+F12 allow-when-locked=true { spawn-sh "bluetoothctl connect $AIRPODS_MAC"; }
+    Super+Delete { spawn-sh "makoctl dismiss -a"; }
 
     Super+Left  { focus-column-left; }
     Super+Down  { focus-window-down; }
