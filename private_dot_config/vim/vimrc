@@ -24,7 +24,9 @@ autocmd BufNewFile,BufRead *.mdx setfiletype markdown
 syntax on
 color zellner
 set cursorline
-highlight CursorLine guibg=Grey90
+hi CursorLine guibg=Grey90
+hi markdownCode ctermfg=DarkCyan
+hi markdownCodeBlock ctermfg=DarkCyan
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set list
 set incsearch showmode showmatch hlsearch
