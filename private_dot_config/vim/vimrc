@@ -36,7 +36,6 @@ Plug 'findango/vim-mdx'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'kaarmu/typst.vim'
 Plug 'masukomi/vim-markdown-folding'
-Plug 'prabirshrestha/vim-lsp'
 Plug 'voldikss/vim-mma'
 Plug 'wakatime/vim-wakatime'
 call plug#end()
@@ -46,9 +45,6 @@ autocmd BufReadPost *
 	\	exe "normal! g`\"" |
 	\ endif
 autocmd BufReadPost * if &filetype!=#'markdown' | DetectIndent | endif
-nnoremap <C-l><C-e> :call lsp#enable()<CR>
-nnoremap <C-l><C-h> :LspHover<CR>
-nnoremap <C-l><C-d> :call lsp#disable()<CR>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
@@ -62,15 +58,6 @@ noremap <S-Down> <Nop>
 inoremap <S-Up> <Nop>
 inoremap <S-Down> <Nop>
 let g:sql_type_default='pgsql'
-let g:lsp_auto_enable=0
 let g:auto_save_silent=1
 let g:auto_save_events=["TextChanged","TextChangedI"]
 let g:updatetime=5000
-if executable('typescript-language-server')
-	au User lsp_setup call lsp#register_server({
-		\'name': 'typescript-language-server',
-		\'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-		\'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-		\'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
-		\})
-endif
