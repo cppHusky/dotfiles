@@ -322,3 +322,7 @@ label:focus {
 #scratchpad.empty {
 	background-color: transparent;
 }
+
+#custom-cash.history-alert{
+    color:#07e229;
+}

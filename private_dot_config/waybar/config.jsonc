@@ -89,7 +89,7 @@
 		"tooltip":true,
 		"interval": 1,
 		"return-type": "json",
-		"exec":"~/.cargo/bin/cash-rate-logger --waybar -b CNY -o USD,JPY"
+		"exec":"~/.cargo/bin/cash-rate-logger --waybar -b CNY -o JPY,USD --history-direction high --history-percent 95 --history-days 7"
 		//"exec": "/tmp/a.sh"
 	}
 }
