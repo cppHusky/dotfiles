@@ -95,9 +95,16 @@ output "Lenovo Group Limited 0x8AB1 Unknown" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     //position x=1280 y=0
+    focus-at-startup
 }
 
-/-output "HDMI-A-1" {
+output "PNP(HSK) huskyPhone 0x00000001" {
+    mode "2416x1179@59.994"
+    scale 2
+}
+
+recent-windows{
+    off
 }
 
 // Settings that influence how windows are positioned and sized.
