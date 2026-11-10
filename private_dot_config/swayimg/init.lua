@@ -1,28 +1,9 @@
-swayimg.viewer.on_mouse(
-  "ScrollUp",
-  function()
+swayimg.viewer.on_scroll(
+  function(kmods,horizontal,vertical)
     local pos=swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x,pos.y+50);
-  end
-)
-swayimg.viewer.on_mouse(
-  "ScrollDown",
-  function()
-    local pos=swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x,pos.y-50);
-  end
-)
-swayimg.viewer.on_mouse(
-  "ScrollLeft",
-  function()
-    local pos=swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x+50,pos.y);
-  end
-)
-swayimg.viewer.on_mouse(
-  "ScrollRight",
-  function()
-    local pos=swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x-50,pos.y);
+    swayimg.viewer.set_abs_position(
+      pos.x+horizontal*50,
+      pos.y+vertical*50
+    )
   end
 )
