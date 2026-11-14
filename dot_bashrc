@@ -56,11 +56,11 @@ bind -x '"\e[24~":"_paste_clipboard"'
 
 # Bash greeting
 _my_bash_greeting(){
-    local hostname="\e[34;1m[$(hostnamectl hostname)]\e[0m"
+    local hostname="\e[34;1m[${HOSTNAME}]\e[0m"
     local uptime="\e[1m$(uptime -p)\e[0m"
     echo -e "${hostname} ${uptime}"
 }
-_my_bash_greeting
+[[ $- == *i* ]] && _my_bash_greeting
 
 # Custom bash prompt
 function _timer_now {
